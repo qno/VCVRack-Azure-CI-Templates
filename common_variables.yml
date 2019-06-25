@@ -1,0 +1,18 @@
+variables:
+  python-version: "3.7"
+  conan-pkg: "conan"
+  cpt-pkg:  "conan_package_tools"
+  bpt-pkg: "bincrafters_package_tools"
+  linux-deps: "python3-setuptools python3-pip build-essential automake autoconf libtool cmake gcc g++ clang ninja-build git jq p7zip-full"
+  vcvracksdk-conan-upload-remote: "qno"
+  vcvracksdk-conan-remote: "$(vcvracksdk-conan-upload-remote) https://api.bintray.com/conan/qno/conan-public"
+
+  conan-add-remotes: |
+    conan user
+    conan remote add $(vcvracksdk-conan-remote) --insert
+    conan remote add conan-community https://api.bintray.com/conan/conan-community/conan
+    conan remote add bincrafters https://api.bintray.com/conan/bincrafters/public-conan
+
+  # Xcode Version overview: https://gist.github.com/yamaya/2924292
+  # available versions: https://github.com/Microsoft/azure-pipelines-image-generation/blob/master/images/macos/macos-10.14-Readme.md
+  XCODE_VERSION: 10.2
